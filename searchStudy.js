@@ -28,7 +28,7 @@ searchByID(ethicsClearURL, id);
 
 // serch for studies by parameter
 function searchByParam(urlRoot, paramType, paramVal) {
-  fullURL = urlRoot + paramType + '/' + paramVal;
+  let fullURL = urlRoot + paramType + '/' + paramVal;
   fetch(fullURL, {
     method: "GET",
   }).then(response => response.text())
