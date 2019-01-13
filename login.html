@@ -28,23 +28,6 @@
   <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
   <!-- -->
-  <script type="text/javascript" src="check.js">
-    function login=(){
-  let data = { 
-                "email": "notSpeedy@gmail.com",
-                "password": "password",
-}
-
-var response = fetch('https://research-stream.herokuapp.com/user/login ', {
-        method: "POST"
-        body: JSON.stringify(data),
-    })
-  .then(function(response) {
-    return response.json();
-  })
-
-}
-  </script>
 </head>
 
 <body>
@@ -88,11 +71,13 @@ var response = fetch('https://research-stream.herokuapp.com/user/login ', {
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-    <button id="hello" class="btn btn-lg btn-primary btn-block" type="submit" name="login_participant" onclick="login();">Sign in</button>
+    <button id="hello" class="btn btn-lg btn-primary btn-block" type="submit" name="login_participant">Sign in</button>
     <br>
     <!--hyperlink to here-->
     <p>Don't have an account? Sign up <a href="participantSignup.php">here</a></p>
     <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
   </form>
+
+  <script type="text/javascript" src="login.js"></script>
 </body>
 </html>
