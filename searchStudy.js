@@ -19,7 +19,7 @@ function searchByID(url, id) {
     method: "GET",
   }).then(response => response.text())
   .then(response => console.log('Search by ID:', response))
-  .then(error => error.log('Error:', error))
+  .then(error => console.error('Error:', error))
 }
 
 
@@ -33,7 +33,7 @@ function searchByParam(urlRoot, paramType, paramVal) {
     method: "GET",
   }).then(response => response.text())
   .then(response => console.log('Search by Parameter:', response))
-  .then(error => error.log('Error:', error))
+  .then(error => console.error('Error:', error))
 }
 
 searchByParam(paramSearchURL, paramList[3], 'Wally West');
