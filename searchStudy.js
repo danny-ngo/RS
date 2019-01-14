@@ -10,9 +10,6 @@ const paramSearchURL = 'https://research-stream.herokuapp.com/study/'
 // list of possible parameters to search by
 const paramList = ['name', 'location', 'lab', 'researcher'];
 
-// test-case id
-const id = '5c37c1ada991b25288c06088'
-
 const res = {};
 
 // search for study by id
@@ -20,16 +17,16 @@ function searchStudyByID(id) {
   fetch(studyByIdURL + id, {
     method: "GET",
   }).then(response => response.json())
-  .then(function(response) {
+  .then(function(response) {  // data handling done within this function
     console.log('Search study by id:');
-    console.log('inside function element by element:');
+    console.log('inside function element by element:'); //  TEST
     for (let ele in response) {
       res[ele] =  response[ele];
-      console.log(ele + ':', res[ele]);
+      console.log(ele + ':', res[ele]); // TEST: logging study data, element by element
     }
-    console.log('specific element: ', res.name);  //example of accessing a specific element
-    console.log('specific element 2:', res['lab']); // another example of accessing a specific element
-    console.log('inside function as string:', JSON.stringify(res)); // entire json as string
+    console.log('specific element: ', res.name);  // TEST: example of accessing a specific element
+    console.log('specific element 2:', res['lab']); // TEST: another example of accessing a specific element
+    console.log('inside function as string:', JSON.stringify(res)); // TEST: entire json as string
   })
   // response and res empty outside of block above, line below outputs empty {}
   //.then(response => console.log(JSON.stringify(response)))
@@ -45,29 +42,34 @@ function searchEthicsClear(id) {
   .catch(error => console.error('Error:', error))
 }
 
-searchStudyByID(id);
-
-searchEthicsClear(id);
-
-
-
 // search for studies by parameter
 function searchByParam(paramType, paramVal) {
   let fullURL = paramSearchURL + paramType + '/' + paramVal;
   fetch(fullURL, {
     method: "GET",
   }).then(response => response.json())
-  .then(function(response) {
+  .then(function(response) {  // data handling done within this function
     console.log('Search by parameter:');
     let j = []
     for(let ele in response) {
       j.push(response[ele]);
     }
-    console.log('First JSON in array:', j[0]);  // accessing specific JSON in array (could stringify)
-    console.log('Specific element in JSON:', j[0].name); // accessing specific element of a specific JSON in array
-    console.log('Specific element in JSON:', j[0]['lab']);  // another example of accessing specific element
+    console.log('First JSON in array:', j[0]);  // TEST: accessing specific JSON in array (could stringify)
+    console.log('Specific element in JSON:', j[0].name); // TEST: accessing specific element of a specific JSON in array
+    console.log('Specific element in JSON:', j[0]['lab']);  // TEST: another example of accessing specific element
   })
   .catch(error => console.error('Error:', error))
 }
+
+
+
+
+
+// test calls
+const id = '5c37c1ada991b25288c06088'
+
+searchStudyByID(id);
+
+searchEthicsClear(id);
 
 searchByParam(paramList[3], 'Wally West');
