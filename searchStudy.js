@@ -1,5 +1,5 @@
 /*
- * TO-DO: Connect front-end to js
+ * TO-DO: Connect front-end to js, handle ethics clearance response
  */
 
 // search endpoint urls
@@ -52,8 +52,8 @@ searchEthicsClear(id);
 
 
 // search for studies by parameter
-function searchByParam(urlRoot, paramType, paramVal) {
-  let fullURL = urlRoot + paramType + '/' + paramVal;
+function searchByParam(paramType, paramVal) {
+  let fullURL = paramSearchURL + paramType + '/' + paramVal;
   fetch(fullURL, {
     method: "GET",
   }).then(response => response.json())
@@ -70,4 +70,4 @@ function searchByParam(urlRoot, paramType, paramVal) {
   .catch(error => console.error('Error:', error))
 }
 
-searchByParam(paramSearchURL, paramList[3], 'Wally West');
+searchByParam(paramList[3], 'Wally West');
