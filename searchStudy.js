@@ -13,10 +13,12 @@ const paramList = ['name', 'location', 'lab', 'researcher'];
 const res = {};
 
 // search for study by id
-function searchStudyByID(id) {
+function searchStudyByID() {
+  const id = document.querySelector('#inputID').value;
   fetch(studyByIdURL + id, {
     method: "GET",
   }).then(response => response.json())
+
   .then(function(response) {  // data handling done within this function
     console.log('Search study by id:');
     console.log('inside function element by element:'); //  TEST
@@ -24,28 +26,36 @@ function searchStudyByID(id) {
       res[ele] =  response[ele];
       console.log(ele + ':', res[ele]); // TEST: logging study data, element by element
     }
-    console.log('specific element: ', res.name);  // TEST: example of accessing a specific element
-    console.log('specific element 2:', res['lab']); // TEST: another example of accessing a specific element
-    console.log('inside function as string:', JSON.stringify(res)); // TEST: entire json as string
+    //console.log('specific element: ', res.name);  // TEST: example of accessing a specific element
+    //console.log('specific element 2:', res['lab']); // TEST: another example of accessing a specific element
+    //console.log('inside function as string:', JSON.stringify(res)); // TEST: entire json as string
   })
   // response and res empty outside of block above, line below outputs empty {}
   //.then(response => console.log(JSON.stringify(response)))
   .catch(error => console.error('Error:', error))
 }
 
+var outside;
+
 // search for ethics clearance by id
-function searchEthicsClear(id) {
-  fetch(ethicsClearURL + id, {
+function searchEthicsClear(tid) {
+  fetch(ethicsClearURL + tid, {
     method: "GET",
-  }).then(response => response.body)
-  .then(response => console.log('Search for ethics clearance: ', response))
+  }).then(response => response.blob())
+  //.then(response => console.log('Search for ethics clearance: ', response))
+  .then(images => {
+      // Then create a local URL for that image and print it
+      outside = URL.createObjectURL(images)
+      console.log('Search for ethics clearance: ', outside)
+  })
   .catch(error => console.error('Error:', error))
 }
 
 // search for studies by parameter
-function searchByParam(paramType, paramVal) {
-  let fullURL = paramSearchURL + paramType + '/' + paramVal;
-  fetch(fullURL, {
+function searchByParam() {
+  let paramType = document.querySelector('#paramType').value;
+  let paramVal = document.querySelector('#paramVal').value;
+  fetch(paramSearchURL + '/' + paramType + '/' + paramVal, {
     method: "GET",
   }).then(response => response.json())
   .then(function(response) {  // data handling done within this function
@@ -66,10 +76,6 @@ function searchByParam(paramType, paramVal) {
 
 
 // test calls
-const id = '5c37c1ada991b25288c06088'
-
-searchStudyByID(id);
-
-searchEthicsClear(id);
-
-searchByParam(paramList[3], 'Wally West');
+const tid = '5c37c1ada991b25288c06088'
+// Researcher: Wally West
+searchEthicsClear(tid);
