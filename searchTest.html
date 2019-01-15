@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>BetaLab</title>
+</head>
+
+<body>
+  <h1>Login</h1>
+  <form method="POST" action="javascript:void(0);" onSubmit="login()">
+    Email: <input type="text" id="inputEmail" name="emailaddress"><br>
+    Password: <input type="text" id="inputPassword" name="password"><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <br>
+  <br>
+
+  <h1>Search Study by ID</h1>
+  <form method="POST" action="javascript:void(0);" onSubmit="searchStudyByID()">
+    Study ID: <input type="text" id="inputID" name="studyid"><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <br>
+  <br>
+
+  <h1>Search Study by Parameter</h1>
+  <form method="POST" action="javascript:void(0);" onSubmit="searchByParam()">
+    Search Category: <select id="paramType">
+      <option value="name">Name</option>
+      <option value="location">Location</option>
+      <option value="lab">Lab</option>
+      <option value="researcher">Researcher</option>
+    </select><br>
+    Value: <input type="text" id="paramVal" name="parametervalue"><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script type="text/javascript" src="RS/login.js"></script>
+  <script type="text/javascript" src="RS/searchStudy.js"></script>
+</body>
+</html>
